@@ -16,4 +16,7 @@ def normalize(name: str) -> str:
     return transliterated_name
 
 # print(normalize('всі файли'))
-# print(normalize_title('структуру і зміст'))                                 
+# print(normalize_title('структуру і зміст'))
+
+if __name__ == '__main__':
+    pass
