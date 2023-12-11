@@ -12,7 +12,7 @@ MKV_VIDEO = []
 DOC_DOCUMENTS = []
 DOCX_DOCUMENTS = []
 TXT_DOCUMENTS = []
-PDF_DOCUMENTS= []
+PDF_DOCUMENTS = []
 XLSX_DOCUMENTS = []
 PPTX_DOCUMENTS = []
 MP3_MUSIC = []
@@ -49,12 +49,14 @@ REGISTERED_EXTENSIONS = {
 }
 
 FOLDERS = []
-EXTENSIONS = set() # only unique
-UNDEFINED = set() # only unique
+EXTENSIONS = set()  # only unique
+UNDEFINED = set()  # only unique
+
 
 def define_extension(filename: str) -> str:
-    return Path(filename).suffix[1:].upper() # without fullstop and in capital letters
-   
+    return Path(filename).suffix[1:].upper()  # without fullstops and in capital letters
+
+
 def scanning(folder: Path) -> None:
     for el in folder.iterdir():
         if el.is_dir():
@@ -77,6 +79,7 @@ def scanning(folder: Path) -> None:
             except KeyError:
                 UNDEFINED.add(ext)
                 MY_OTHERS.append(fullname)
+
 
 if __name__ == '__main__':
     folder_to_scan = sys.argv[1]
@@ -109,5 +112,4 @@ if __name__ == '__main__':
     print(f'Types of files in folder: {EXTENSIONS}')
     print(f'Files with undefined formats: {UNDEFINED}')
     print(f'Other files: {MY_OTHERS}')
-
     print(f'List of folders: {FOLDERS}')
