@@ -1,8 +1,10 @@
-from pathlib import Path 
+# main.py
+
+from pathlib import Path
 import shutil
 import sys
 import file_parser as parser
-from normalize import normalize
+from normalize_file import normalize
 
 def handle_media(filename: Path, target_folder: Path) -> None:
     target_folder.mkdir(exist_ok=True, parents=True)
@@ -86,14 +88,19 @@ def main(folder: Path):
     for folder in parser.FOLDERS[::-1]:
         handle_folder(folder)
 
-if __name__ == '__main__' :
-    if sys.argv[1]:
-        folder_for_scan = Path(sys.argv[1])
-        # print(f'Start in folder: {folder_for_scan.resolve()}')
-        # main(folder_for_scan.resolve())
-        
-        print(f'Start in folder: {folder_for_scan}')
-        main(folder_for_scan)
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <folder_to_scan>")
+        sys.exit(1)
+
+    folder_for_scan = Path(sys.argv[1])
+
+    if not folder_for_scan.is_dir():
+        print(f"Error: '{folder_for_scan}' is not a valid directory.")
+        sys.exit(1)
+
+    print(f'Start in folder: {folder_for_scan}')
+    main(folder_for_scan)
     
 
     

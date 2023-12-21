@@ -1,3 +1,5 @@
+# file_parser.py
+
 import sys
 from pathlib import Path
 
@@ -82,7 +84,12 @@ def scanning(folder: Path) -> None:
 
 
 if __name__ == '__main__':
-    folder_to_scan = sys.argv[1]
+    try:
+        folder_to_scan = sys.argv[1]
+    except IndexError:
+        print("Error: Please provide the path of the folder to scan.")
+        print("Usage: python file_parser.py <folder_to_scan>")
+        sys.exit(1)
 
     print(f'Start scanning folder {folder_to_scan}')
     scanning(Path(folder_to_scan))
@@ -108,7 +115,7 @@ if __name__ == '__main__':
     print(f'Archive in ZIP format: {ZIP_ARCHIVE}')
     print(f'Archive in GZ format: {GZ_ARCHIVE}')
     print(f'Archive in TAR format: {TAR_ARCHIVE}')
-   
+
     print(f'Types of files in folder: {EXTENSIONS}')
     print(f'Files with undefined formats: {UNDEFINED}')
     print(f'Other files: {MY_OTHERS}')
