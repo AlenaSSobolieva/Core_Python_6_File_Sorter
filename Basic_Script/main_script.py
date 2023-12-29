@@ -1,14 +1,28 @@
-# main.py
+# main_script.py
 
 from pathlib import Path
 import shutil
 import sys
-import file_parser as parser
-from normalize_file import normalize
+import Basic_Script.file_parser as parser
+from Basic_Script.normalize_file import name_normalize as normalize
 
 def handle_media(filename: Path, target_folder: Path) -> None:
     target_folder.mkdir(exist_ok=True, parents=True)
-    filename.replace(target_folder / normalize(filename.name))
+    destination_path = target_folder / normalize(filename.name)
+
+    print(f"Source file: {filename}")
+    print(f"Target folder: {target_folder}")
+    print(f"Destination path: {destination_path}")
+
+    try:
+        shutil.move(filename, destination_path)
+    except Exception as e:
+        print(f"Error moving file: {e}")
+
+    print(f"File moved successfully: {destination_path}")
+
+
+
 
 def handle_other(filename: Path, target_folder: Path) -> None:
     target_folder.mkdir(exist_ok=True, parents=True)

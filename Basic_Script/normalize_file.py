@@ -21,7 +21,7 @@ def name_normalize(name: str) -> str:
     if not isinstance(transliterated_name, str):
         raise TypeError("Translation result must be a string.")
 
-    transliterated_name = re.sub(r'\W', '_', transliterated_name)
+    transliterated_name = re.sub(r'_+', '_', transliterated_name)
 
     return transliterated_name
 

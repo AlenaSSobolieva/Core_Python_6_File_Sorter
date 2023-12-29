@@ -42,7 +42,7 @@ class TestFileParser(unittest.TestCase):
         (test_data_dir / "archive3.tar").touch()
         (test_data_dir / "web.html").touch()
         (test_data_dir / "web.css").touch()
-        
+
 
         # Create test folders in the temporary directory
         (test_data_dir / "subfolder1").mkdir(exist_ok=True)
